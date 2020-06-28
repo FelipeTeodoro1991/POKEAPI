@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <title>pokeApi</title>
+</head>
+
+<body class="corpo">
+  <!--barra de navegação-->
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link active" href="#">Active</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+    </li>
+  </ul>
+  <!-- titulo pokemon-->
+  <div class="titulo">
+    <img src="pokeApi.png" class="mx-auto d-block" width="600px" alt="Responsive image">
+  </div>
+  <!--Barra de pesquisa-->
+  <div class="container">
+    <div class="barradepesuisa">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" id="valordigitado" placeholder="Digite o nome ou ID do pokemon"
+          aria-label="Recipient's username" aria-describedby="button-addon2">
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button" onclick="pegaValorDiditado(), pegaNomePokemon()" id="button-addon2" >Pesquisar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container p-3 mb-2 bg-info">
+    <div class="row">
+      <div class="card" style="width: 18rem; margin: 20px;">
+        <img src="pikachu3.png" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title" id="nomedopokemon">Card title</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="btn btn-primary" onclick= >Go somewhere</a>
+        </div>
+      </div>
+      
+      <p style="margin: 20px;"> texto</p>
+    </div>
+  </div>
+  <!--Arquivo JS-->
+  <script src="script.js"></script>
+<!--Axios para importar pokeApi-->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
