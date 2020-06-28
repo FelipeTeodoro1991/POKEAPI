@@ -9,13 +9,17 @@ async function pegaNomePokemon(){
 axios.get(`https://pokeapi.co/api/v2/pokemon/${valor}`)
     .then( async function main (resposta) {
         let dados = await resposta.data;
-        let nomePokemon = await dados.name
-        document.getElementById("nomedopokemon").innerHTML=`${nomePokemon}`
-        let habilidade = await dados.abilities
-        habilidade.forEach( habilidades => {console.log(habilidades.ability.name)            
+        let nomePokemon = await dados.name;
+        document.getElementById("nomedopokemon").innerHTML=`${nomePokemon.toUpperCase()}`;
+        let habilidade = await dados.abilities;
+        habilidade.forEach( (hb,i) => {let habilidades = hb.ability.name;  
+            document.getElementById(`habilidade${i}`).innerHTML = `${habilidades}`;          
         });
         let tipo = await dados.types
-        tipo.forEach(tipos => {console.log(tipos.type.name)} )
+        tipo.forEach((tp,i) => {let tipos = tp.type.name
+            document.getElementById(`tipo${i}`).innerHTML = `${tipos}`
+        
+        } )
         
 })}
 
