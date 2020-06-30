@@ -1,48 +1,75 @@
 // let axios = require('axios')
-let valor
+
+
+var pokemon = {};
+
+
 function pegaValorDiditado() {
-    valor = document.getElementById("valordigitado").value;
-    return valor
+    const valor = document.getElementById("valordigitado").value;
+    pegaNomePokemon(valor)
 }
 let nome = "";
 let habilidade = "";
 let tipo = "";
 let id = "";
 
-async function pegaNomePokemon() {
+function pegaNomePokemon(valor) {
     axios.get(`https://pokeapi.co/api/v2/pokemon/${valor}`)
-        .then(async function main(resposta) {
-            let dados = await resposta.data;
-            let nomePokemon = await dados.name;
+        .then(function(resposta) {
+            pokemon = resposta.data;
+            let dados =  resposta.data;
+            let nomePokemon =  dados.name;
             // nome.push(nomePokemon);
             document.getElementById("nomedopokemon").innerHTML = `${nomePokemon.toUpperCase()}`;
-            let lista = document.querySelector("#habilidade");
-            let habilidade = dados.abilities.map( abili => `<p>${ abili.ability.name}</p>`);
-            lista.innerHTML = habilidade.join('')
-            let tipo = await dados.types
-            tipo.forEach((tp, i) => {
-                let tipos = tp.type.name
-                document.getElementById(`tipo${i}`).innerHTML = `${tipos}`
-                let imagem = dados.sprites.front_default
-                document.getElementById('imagem').src = `${imagem}`
-            let detalhesHabilidades = dados.abilities
-            detalhesHabilidades.forEach((dh, i) => {
-            let retornaUrl = dh.ability.url
-            axios.get(`${retornaUrl}`).then(dh =>{
-            let descricaoHabilidades =  dh.data.effect_entries
-            descricaoHabilidades.forEach((hd, i) =>{
-            let linguagem = hd.language.name
-            let descricao = hd.effect 
-            if(linguagem == "en"){
-                console.log(descricao)
-            }
-            })
-            })
-        })
-            })
-
+            setaHabilidades(dados.abilities);
+            setaTipo(dados.types);
+            setaDetalhesHabilidades(dados.abilities);
+            setaImagem(dados.sprites.front_default);
+                    
         })
 }
+
+function setaHabilidades(abilities) {
+    let lista = document.querySelector("#habilidade");
+    let habilidade = abilities.map(abili => `<p>${abili.ability.name}</p>`);
+    lista.innerHTML = habilidade.join('');
+}
+
+function setaTipo(tipo) {
+    tipo.forEach((tp, i) => {
+        let tipos = tp.type.name;
+        document.getElementById(`tipo${i}`).innerHTML = `${tipos}`;
+        
+    });
+}
+
+function setaImagem(imagem) {
+    document.getElementById('imagem').src = `${imagem}`;
+}
+
+function setaDetalhesHabilidades(detalhesHabilidades) {
+    detalhesHabilidades.forEach((dh, i) => {
+        let retornaUrl = dh.ability.url;
+        axios.get(`${retornaUrl}`).then(dh => {
+            let descricaoHabilidades = dh.data.effect_entries;
+            descricaoHabilidades.forEach((hd, i) => {
+                let linguagem = hd.language.name;
+                let descricao = hd.effect;
+                if (linguagem == "en") {
+                    
+                }
+            });
+        });
+    });
+}
+
+function salvaPokemon() {
+    var pokemonSalvo = {nome: '', tipos: [], habilidades: []}
+    pokemonSalvo.nome = pokemonSalvo.name
+    console.log(pokemon)
+    window.localStorage.setItem("salvaPokemon", JSON.stringify(pokemonSalvo));
+}
+   
 
 // console.log(nome)
 
@@ -61,4 +88,46 @@ async function pegaNomePokemon() {
 // pokeBola.id = id //istancia o id do pokeBola
 // var objetoSerializado = JSON.stringify(pokeBola) // serializa o arquivo
 // fs.writeFileSync(caminhoDoArquivo,objetoSerializado)// parametro 1 informa a pasta destino, parametro 2 informa o arquivo a ser enviado
+
+//async function salvaPokemon(){ // função para salvar os dados na pokeagenda 
+//  var salvandoNomePokemon = document.getElementById("nomePokemon"); //salva o nome do pokemon 
+//var salvandoHabilidadePokemon = document.getElementById("habilidade");
+//var salvandoTipoPokemon = document.getElementById("tipo");
+//var salvandoDetalhesPokemon = document.getElementById("detalhesHabilidades");    
+//var salvandoDescricaoPokemon = document.getElementById("descricaoHabilidades");   
+//var dados = JSON.parse(localStorage.getItem("pokeagenda"));
+//if (dados == null){
+//localStorage.setItem("pokeagenda", "[]");
+//dados = [];        
+//}
+//var salvaRegistroPokemon = {
+//  nome: salvandoNomePokemon.value,
+//habilidade: salvandoHabilidadePokemon.value,
+//tipo: salvandoTipoPokemon.value,
+//detalhes: salvandoDetalhesPokemon.value,
+//descricao: salvandoDescricaoPokemon.value
+//}
+
+//dados.push(salvaRegistroPokemon);
+//localStorage.setItem("pokeagenda", JSON.stringify(dados));
+//salvandoNomePokemon.value = "";
+//salvandoHabilidadePokemon.value = "";
+//salvandoTipoPokemon.value = "";
+//salvandoDetalhesPokemon.value = "";
+//salvandoDescricaoPokemon.value = "";
+
+//console.log(salvaRegistroPokemon)
+
+//}
+
+
+
+
+
+
+
+
+
+
+
 
