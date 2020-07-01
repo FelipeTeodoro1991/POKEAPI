@@ -16,6 +16,15 @@
     background-color: aqua;
 }
 
+.icone{
+    text-align: end;
+    margin-right: 5px;
+}
+
+.escondido{
+    display: none;
+}
+
 .campopoke{
     margin-top: 40px;
 }

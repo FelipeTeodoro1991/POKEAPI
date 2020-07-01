@@ -33,6 +33,7 @@ function setaHabilidades(abilities) {
     let lista = document.querySelector("#habilidade");
     let habilidade = abilities.map(abili => `<p>${abili.ability.name}</p>`);
     lista.innerHTML = habilidade.join('');
+
 }
 
 function setaTipo(tipo) {
@@ -56,6 +57,7 @@ function setaDetalhesHabilidades(detalhesHabilidades) {
                 let linguagem = hd.language.name;
                 let descricao = hd.effect;
                 if (linguagem == "en") {
+                document.getElementById('')
                     
                 }
             });
@@ -64,11 +66,36 @@ function setaDetalhesHabilidades(detalhesHabilidades) {
 }
 
 function salvaPokemon() {
-    var pokemonSalvo = {nome: '', tipos: [], habilidades: []}
-    pokemonSalvo.nome = pokemonSalvo.name
-    console.log(pokemon)
+    var pokemonSalvo = {nome:'', tipos: [], habilidades: []}
+    pokemonSalvo.nome = pokemon.name
+    pokemon.types.forEach((tp, i) => {
+        let poderes = tp.type.name
+        pokemonSalvo.tipos.push(poderes)
+        })
+    pokemon.abilities.forEach((ab, i) => {
+        let habilidade = ab.ability.name
+        pokemonSalvo.habilidades.push(habilidade)
+    })
     window.localStorage.setItem("salvaPokemon", JSON.stringify(pokemonSalvo));
-}
+    
+    }
+
+    function desapareceCoracao(){
+        var mudacoracao = document.querySelector('.canjica')
+        mudacoracao.classList.add('escondido')
+        document.querySelector('.bananinha').classList.remove('escondido')
+        
+
+    
+    }
+// document.getElementById("getPokemon")
+//   .addEventListener("keyup", function (event) {
+//     if (event.keyCode === 13) {
+//       event.preventDefault();
+//       document.getElementById("submitPokemon").click();
+//     }
+//   });
+
    
 
 // console.log(nome)
